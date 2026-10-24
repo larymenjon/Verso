@@ -6,6 +6,9 @@
 Every floating island exists twice, in the world of the **Living** and in the **Beyond**. One button flips between them:
 bridges vanish, platforms appear, spikes move to the other side. Gather the lost souls, grab the key and reach the portal.
 
+![Verso](Docs/itch/cover_630x500.png)
+
+---
 
 ## Features
 
