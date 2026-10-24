@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6163511778402548954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9125146507263689822}
+  - component: {fileID: 2649824443932807524}
+  - component: {fileID: 4559281107266996736}
+  m_Layer: 0
+  m_Name: Systems
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9125146507263689822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6163511778402548954}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2649824443932807524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6163511778402548954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8f14db5a78a434f9c37254f965350c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Verso.WorldManager
+  startWorld: 0
+  transitionDuration: 0.6
+  cooldown: 0.5
+  overlapSkin: 0.06
+  daySky: {r: 1, g: 0.85, b: 0.65, a: 1}
+  dayAmbient: {r: 0.7882353, g: 0.6431373, b: 0.6039216, a: 1}
+  dayLight: {r: 1, g: 0.92, b: 0.8, a: 1}
+  dayLightIntensity: 1.2
+  dayLightEuler: {x: 50, y: -30, z: 0}
+  dayFog: {r: 0.5568628, g: 0.30980393, b: 0.36862746, a: 1}
+  nightSky: {r: 0.08, g: 0.06, b: 0.2, a: 1}
+  nightAmbient: {r: 0.25, g: 0.22, b: 0.45, a: 1}
+  nightLight: {r: 0.55, g: 0.6, b: 1, a: 1}
+  nightLightIntensity: 0.5
+  nightLightEuler: {x: 30, y: 150, z: 0}
+  nightFog: {r: 0.08627451, g: 0.10980392, b: 0.21176471, a: 1}
+  daySkybox: {fileID: 2100000, guid: 73843efa6ffbf5643bcf76f12f4455bd, type: 2}
+  nightSkybox: {fileID: 2100000, guid: 395ae38ce56c4f044bc64c2d559590af, type: 2}
+  skyDip: 0.75
+  sun: {fileID: 0}
+  ghostMaterial: {fileID: 2100000, guid: e2398160e6090e443940c37ac6889c98, type: 2}
+--- !u!114 &4559281107266996736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6163511778402548954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2ce54d938d7b384eb52c0244a8b66b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Verso.AudioManager
+  musicDay: {fileID: 8300000, guid: 29c0e579c3ff52f4eae655092a48aff0, type: 3}
+  musicNight: {fileID: 8300000, guid: 0d03368161fdddf4d9c26f8ddf86699d, type: 3}
+  musicVolume: 0.6
+  crossfade: 0.6
+  keepMusicOnFlip: 1
+  musicGameOver: {fileID: 8300000, guid: 600acd1db80beb643837357fe65582ed, type: 3}
+  sfx:
+  - type: 0
+    clip: {fileID: 8300000, guid: f334599a1f5bbd945afbbf6fb4233b6b, type: 3}
+    volume: 0.7
+  - type: 3
+    clip: {fileID: 8300000, guid: d71147e2fdc27094ab4e08eb92c0d323, type: 3}
+    volume: 0.85
+  - type: 12
+    clip: {fileID: 8300000, guid: 5b3d0bbbd7dc49b449e09233bb68f089, type: 3}
+    volume: 0.9
+  - type: 5
+    clip: {fileID: 8300000, guid: 255eb1b4500cea3408d27fd78d1c4734, type: 3}
+    volume: 1

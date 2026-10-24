@@ -6,7 +6,28 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Verso/Scenes/MainMenu.unity
+    guid: 872bd84221a830a49a33239eafd62433
+  - enabled: 1
+    path: Assets/Verso/Scenes/Intro.unity
+    guid: 55cf3dc35808ffb4986c3b72a82b4547
+  - enabled: 1
+    path: Assets/Verso/Scenes/Island1.unity
+    guid: 2a7308da251546143be6bbda44c2367d
+  - enabled: 1
+    path: Assets/Verso/Scenes/Island2.unity
+    guid: e0a0a5c559ab6f54da722aefc03b7948
+  - enabled: 1
+    path: Assets/Verso/Scenes/Island3.unity
+    guid: 707549b472ef7e341bb9741be94b1b9e
+  - enabled: 1
+    path: Assets/Verso/Scenes/Island4.unity
+    guid: 95066aa869110224daca38c9de3e327f
+  - enabled: 1
+    path: Assets/Verso/Scenes/Island5.unity
+    guid: 941f2c368ae006b479b8a55bd37c0b4a
+  - enabled: 1
+    path: Assets/Verso/Scenes/End.unity
+    guid: 8cbfa8c09026b0248916145126d98925
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
