@@ -25,9 +25,17 @@ namespace Verso
                 source.ignoreListenerPause = true; // toca mesmo com o jogo pausado
                 click = Resources.Load<AudioClip>("UI/ui_click");
                 hover = Resources.Load<AudioClip>("UI/ui_hover");
+                if (click == null || hover == null)
+                    Debug.LogWarning("[Verso] Sons de botão não encontrados em Assets/Verso/Resources/UI (ui_click, ui_hover).");
+                if (click != null) click.LoadAudioData();
+                if (hover != null) hover.LoadAudioData();
                 return source;
             }
         }
+
+        // cria a fonte e carrega os clips logo no começo, para o primeiro hover já tocar
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void Warmup() { source = null; lastHover = -1f; _ = Source; }
 
         public static void Click()
         {

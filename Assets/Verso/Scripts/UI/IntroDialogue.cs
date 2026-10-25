@@ -34,7 +34,7 @@ namespace Verso
             new Line(Speaker.Alminha, "Essas são as Ilhas do Verso. Cada uma existe duas vezes: no mundo dos Vivos e no Além.", "These are the Verso Islands. Each one exists twice: in the world of the Living and in the Beyond."),
             new Line(Speaker.Lume, "Duas vezes? No mesmo lugar?", "Twice? In the same place?"),
             new Line(Speaker.Alminha, "No mesmo lugar, mas nunca ao mesmo tempo. Uma ponte que existe aqui pode sumir do outro lado.", "Same place, but never at the same time. A bridge that's here might vanish on the other side."),
-            new Line(Speaker.Alminha, "Aperte F e o mundo vira. O que estava escondido aparece.", "Press F and the world flips. Whatever was hidden shows up!"),
+            new Line(Speaker.Alminha, "Aperte F (ou clique) e o mundo vira. O que estava escondido aparece.", "Press F (or click) and the world flips. Whatever was hidden shows up!"),
             new Line(Speaker.Lume, "E o que eu faço lá?", "And what do I do there?"),
             new Line(Speaker.Alminha, "Muitas almas como eu se perderam entre os dois lados. Junte 3 em cada ilha e o portal se abre.", "Lots of souls like me got lost between the two sides. Gather 3 on each island and the portal opens."),
             new Line(Speaker.Lume, "E se eu virar o mundo bem em cima de uma pedra?", "What if I flip the world right on top of a rock?"),

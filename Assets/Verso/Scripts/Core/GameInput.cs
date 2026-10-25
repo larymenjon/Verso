@@ -5,7 +5,7 @@ namespace Verso
 {
     /// <summary>
     /// Leitura centralizada de input (teclado/mouse + gamepad) usando o Input System.
-    /// Mapeamento conforme GDD: WASD/analógico, Espaço/A, F ou clique direito/Y, R/Select, Esc/Start.
+    /// Mapeamento conforme GDD: WASD/analógico, Espaço/A, F ou clique (esquerdo/direito)/Y, R/Select, Esc/Start.
     /// </summary>
     public static class GameInput
     {
@@ -78,7 +78,8 @@ namespace Verso
 
         public static bool FlipPressed => Demo != null ? Demo.Flip :
             (Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame) ||
-            (Mouse.current != null && Cursor.lockState == CursorLockMode.Locked && Mouse.current.rightButton.wasPressedThisFrame) ||
+            (Mouse.current != null && Cursor.lockState == CursorLockMode.Locked && Time.frameCount > clickIgnoreFrame &&
+                (Mouse.current.leftButton.wasPressedThisFrame || Mouse.current.rightButton.wasPressedThisFrame)) ||
             (Gamepad.current != null && Gamepad.current.buttonNorth.wasPressedThisFrame);
 
         public static bool RestartPressed => Demo == null && (
@@ -92,8 +93,12 @@ namespace Verso
         public static bool ClickPressed => Demo == null &&
             Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame;
 
+        // o clique que fecha uma dica/devolve o cursor não pode virar o mundo no mesmo instante
+        private static int clickIgnoreFrame = -1;
+
         public static void LockCursor(bool locked)
         {
+            if (locked && Cursor.lockState != CursorLockMode.Locked) clickIgnoreFrame = Time.frameCount + 1;
             Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
             Cursor.visible = !locked;
         }

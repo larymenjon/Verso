@@ -120,6 +120,17 @@ namespace Verso
             return true;
         }
 
+        /// <summary>Vira só se der agora, sem tremor nem som de recusa (usado pelo buffer do F/clique).</summary>
+        public bool TryFlipQuiet()
+        {
+            if (Time.time - lastFlipTime < cooldown) return false;
+            WorldType target = WorldLayers.Opposite(CurrentWorld);
+            if (!IsSafeToFlip(target)) return false;
+            lastFlipTime = Time.time;
+            SetWorld(target, true);
+            return true;
+        }
+
         /// <summary>Força um mundo (usado em reinícios/cutscenes).</summary>
         public void SetWorld(WorldType world, bool animate)
         {

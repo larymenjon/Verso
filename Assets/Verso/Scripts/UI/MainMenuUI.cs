@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace Verso
 {
@@ -37,6 +39,11 @@ namespace Verso
         private void Update()
         {
             if (SettingsUI.IsOpen) return;
+            // teclado/controle sem nada selecionado: começa pelo Jogar (com mouse, nada fica pré-selecionado)
+            var es = EventSystem.current;
+            if (es != null && es.currentSelectedGameObject == null && NavPressed() && playButton != null
+                && (creditsPanel == null || !creditsPanel.activeSelf))
+                playButton.Select();
             if (creditsPanel != null && creditsPanel.activeSelf && GameInput.PausePressed) ShowCredits(false);
         }
 
@@ -57,7 +64,18 @@ namespace Verso
 
         private void Start()
         {
-            if (playButton != null) playButton.Select();
+            // só pré-seleciona com controle; no mouse isso deixava o Jogar sempre "aceso" e sem hover
+            if (playButton != null && Gamepad.current != null) playButton.Select();
+        }
+
+        private static bool NavPressed()
+        {
+            var k = Keyboard.current;
+            if (k != null && (k.upArrowKey.wasPressedThisFrame || k.downArrowKey.wasPressedThisFrame || k.wKey.wasPressedThisFrame
+                || k.sKey.wasPressedThisFrame || k.tabKey.wasPressedThisFrame || k.enterKey.wasPressedThisFrame)) return true;
+            var g = Gamepad.current;
+            return g != null && (g.dpad.up.wasPressedThisFrame || g.dpad.down.wasPressedThisFrame || g.buttonSouth.wasPressedThisFrame
+                || g.leftStick.up.wasPressedThisFrame || g.leftStick.down.wasPressedThisFrame);
         }
 
         private void Play()

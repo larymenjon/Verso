@@ -23,6 +23,8 @@ namespace Verso
         [SerializeField] private float gravity = -25f;
         [SerializeField] private float fallGravityMultiplier = 1.6f;
         [SerializeField] private float coyoteTime = 0.12f;
+        [SerializeField] private float flipBuffer = 0.4f;
+        private float flipQueuedUntil;
         [SerializeField] private float jumpBuffer = 0.12f;
 
         [Header("Respawn")]
@@ -82,8 +84,14 @@ namespace Verso
                 return;
             }
 
-            if (canAct && GameInput.FlipPressed && WorldManager.Instance != null)
-                WorldManager.Instance.TryFlip();
+            // Virar com buffer: apertar F/clique um pouco antes do pulo também vale.
+            // O pedido fica guardado por flipBuffer segundos e vira assim que houver espaço.
+            if (canAct && GameInput.FlipPressed) flipQueuedUntil = Time.time + flipBuffer;
+            if (flipQueuedUntil > 0f && WorldManager.Instance != null)
+            {
+                if (WorldManager.Instance.TryFlipQuiet()) flipQueuedUntil = 0f;
+                else if (Time.time > flipQueuedUntil) { flipQueuedUntil = 0f; WorldManager.Instance.TryFlip(); } // não deu: avisa
+            }
 
             Vector2 input = canAct ? GameInput.Move : Vector2.zero;
             Vector3 desired = CameraRelative(input) * moveSpeed;

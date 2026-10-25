@@ -31,7 +31,7 @@ See-through blocks belong to the other side: flip, and they become solid.
 **Grab the key.** When all souls are found, a golden key appears at the portal. Take it to reach the next island.
 
 **Flip in mid-air.** If something solid from the other side is right where you're standing, the world refuses to flip.
-Jump first and press F while you're in the air: the platform appears under your feet.
+Jump and click (or press F): the platform appears under your feet. You can click a moment before the jump, the game holds it until there's room.
 
 **Mind the rhythm.** Spikes also live on one side only. Flip at the right moment to make the ones ahead disappear.
 
@@ -59,7 +59,7 @@ It can press the plates you can't reach. Plan your path for two.
 | Move | WASD | Left stick |
 | Camera | Mouse | Right stick |
 | Jump | Space | A |
-| Flip the world | F / Right click | Y |
+| Flip the world | F / Mouse click | Y |
 | Restart island | R | Select |
 | Pause | Esc | Start |
 

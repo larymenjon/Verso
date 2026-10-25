@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 2004782886591124605}
   - {fileID: 7052698726676697051}
-  - {fileID: 7723218309606513061}
+  - {fileID: 6560832640416412205}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3301996850220353887
@@ -56,7 +56,7 @@ MonoBehaviour:
   lockedColor: {r: 0.35, g: 0.35, b: 0.4, a: 1}
   unlockedColor: {r: 0.4, g: 1, b: 0.9, a: 1}
   spinSpeed: 60
-  keyVisual: {fileID: 7723218309606513061}
+  keyVisual: {fileID: 6560832640416412205}
   keySpin: 120
   keyBob: 0.12
   celebrateTime: 1.1
@@ -240,7 +240,7 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &7828623255029087822
+--- !u!1001 &6667152620302603718
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -313,8 +313,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f923f0a8b36e6294e8093b5893a01273, type: 3}
---- !u!4 &7723218309606513061 stripped
+--- !u!4 &6560832640416412205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f923f0a8b36e6294e8093b5893a01273, type: 3}
-  m_PrefabInstance: {fileID: 7828623255029087822}
+  m_PrefabInstance: {fileID: 6667152620302603718}
   m_PrefabAsset: {fileID: 0}

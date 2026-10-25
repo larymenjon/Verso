@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Verso
 {
@@ -35,8 +36,22 @@ namespace Verso
             target = pressed ? pressScale : (hovered || selected ? hoverScale : 1f);
         }
 
-        public void OnPointerEnter(PointerEventData e) { hovered = true; Refresh(); UIAudio.Hover(); }
-        public void OnPointerExit(PointerEventData e) { hovered = false; pressed = false; Refresh(); }
+        public void OnPointerEnter(PointerEventData e)
+        {
+            hovered = true; Refresh(); UIAudio.Hover();
+            // o mouse manda no destaque: tira a seleção de teclado de outro botão
+            var es = EventSystem.current;
+            if (es != null && es.currentSelectedGameObject != null && es.currentSelectedGameObject != gameObject)
+                es.SetSelectedGameObject(null);
+        }
+
+        public void OnPointerExit(PointerEventData e)
+        {
+            hovered = false; pressed = false; Refresh();
+            // sem isso o botão continua "selecionado" (grande e clarinho) depois que o mouse sai
+            var es = EventSystem.current;
+            if (es != null && es.currentSelectedGameObject == gameObject) es.SetSelectedGameObject(null);
+        }
         public void OnPointerDown(PointerEventData e) { pressed = true; Refresh(); }
         public void OnPointerUp(PointerEventData e) { pressed = false; Refresh(); }
         public void OnSelect(BaseEventData e)

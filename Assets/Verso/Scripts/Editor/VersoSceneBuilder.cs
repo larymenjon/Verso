@@ -264,11 +264,11 @@ namespace Verso.EditorTools
             SetupGameplayScene(new Vector3(0f, 0.05f, -2f), 0f, WorldType.Day,
                 "Ilha 1 · Despertar", "Existe um lado que você nunca viu.",
                 new[] {
-                    "Oi de novo! Essa é a Ilha 1. Aperte F pra virar o mundo entre os Vivos e o Além.",
+                    "Oi de novo! Essa é a Ilha 1. Aperte F ou clique com o mouse pra virar o mundo entre os Vivos e o Além.",
                     "Os blocos transparentes existem só do outro lado. Vire o mundo pra eles ficarem sólidos.",
                     "Junte as 3 almas e pegue a chave no portal pra seguir em frente!" },
                 new[] {
-                    "Hi again! This is Island 1. Press F to flip the world between the Living and the Beyond.",
+                    "Hi again! This is Island 1. Press F or click the mouse to flip the world between the Living and the Beyond.",
                     "See-through blocks only exist on the other side. Flip the world to make them solid.",
                     "Gather the 3 souls and grab the key at the portal to move on!" });
             bool g = GhostPlatformsIsland1;
@@ -301,11 +301,11 @@ namespace Verso.EditorTools
             SetupGameplayScene(new Vector3(0f, 0.05f, -2f), 0f, WorldType.Day, "Ilha 2 · Travessia", "",
                 new[] {
                     "Aqui os degraus trocam de lado: um é dos Vivos, o próximo é do Além.",
-                    "Pule primeiro e aperte F ainda no ar. Assim o próximo degrau aparece embaixo de você!",
+                    "Pule e clique (ou F). Pode até clicar um tiquinho antes do pulo: o mundo vira assim que der, e o degrau aparece embaixo de você!",
                     "No corredor, os espinhos só existem no Além. Atravesse nos Vivos." },
                 new[] {
                     "Here the steps switch sides: one belongs to the Living, the next to the Beyond.",
-                    "Jump first, then press F while you're in the air. The next step will appear under you!",
+                    "Jump and click (or F). You can even click a moment before jumping: the world flips as soon as it can, and the step appears under you!",
                     "In the hallway, the spikes only exist in the Beyond. Cross it in the Living." });
             bool g = GhostPlatformsIsland2;
 
@@ -345,11 +345,11 @@ namespace Verso.EditorTools
             SetupGameplayScene(new Vector3(0f, 0.05f, -2f), 0f, WorldType.Day, "Ilha 3 · Salto", "",
                 new[] {
                     "Às vezes tem algo do outro lado bem onde você está. Se apertar F parado no chão, o mundo se recusa a virar.",
-                    "Pra ativar essa plataforma, você não pode estar no chão: pule e aperte F logo em seguida.",
+                    "Pra ativar essa plataforma, pule e clique junto. O jogo segura o seu clique até você sair do chão.",
                     "Ela aparece embaixo dos seus pés e você cai em cima. Vamos tentar!" },
                 new[] {
                     "Sometimes there's something on the other side right where you're standing. If you press F on the ground, the world refuses to flip.",
-                    "To bring up that platform you can't be on the ground: jump, then press F right away.",
+                    "To bring up that platform, jump and click together. The game holds your click until you leave the ground.",
                     "It appears under your feet and you land on top. Let's try it!" });
 
             Block("Start", new Vector3(0f, -0.5f, 0f), new Vector3(10f, 1f, 10f), WorldType.Both);

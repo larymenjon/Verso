@@ -233,7 +233,7 @@ namespace Verso.EditorTools
             return btn;
         }
 
-        private static GameObject KeyHint(Transform parent, string key, string text)
+        private static GameObject KeyHint(Transform parent, string key, string text, string extraIcon = null)
         {
             var go = new GameObject("Key_" + key, typeof(RectTransform), typeof(HorizontalLayoutGroup));
             go.transform.SetParent(parent, false);
@@ -248,6 +248,15 @@ namespace Verso.EditorTools
             le.preferredWidth = 76f; le.preferredHeight = 80f;
             var k = Label(cap.transform, "Letter", key, Display, key.Length > 1 ? 28 : 40, Ink, TextAnchor.MiddleCenter);
             Stretch(k.rectTransform, new Vector2(0f, 14f), new Vector2(0f, -4f));
+
+            // ícone extra ao lado da tecla (ex.: mouse com o botão aceso = "ou clique")
+            if (!string.IsNullOrEmpty(extraIcon))
+            {
+                var icon = Img(go.transform, "Icon_" + extraIcon, S(extraIcon), Vector2.zero, Vector2.zero, Vector2.zero);
+                icon.preserveAspect = true;
+                var ile = icon.gameObject.AddComponent<LayoutElement>();
+                ile.preferredWidth = 76f; ile.preferredHeight = 80f;
+            }
 
             Label(go.transform, "Label", text, Body, 28, Cream, TextAnchor.MiddleLeft, 2f);
             return go;
@@ -403,7 +412,7 @@ namespace Verso.EditorTools
             var fit = keys.GetComponent<ContentSizeFitter>();
             fit.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
             fit.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-            KeyHint(keys.transform, "F", "virar");
+            KeyHint(keys.transform, "F", "virar", "mouse_click");
             KeyHint(keys.transform, "R", "reiniciar");
             KeyHint(keys.transform, "Esc", "pausa");
 
@@ -504,6 +513,9 @@ namespace Verso.EditorTools
         public static void BuildMenuUI()
         {
             Canvas canvas = NewCanvas("MenuUI", 0);
+            // menu sempre com 1080 de altura útil: em telas mais largas que 16:9 sobra espaço dos lados
+            // em vez de os botões descerem para cima dos créditos
+            canvas.GetComponent<CanvasScaler>().matchWidthOrHeight = 1f;
             var menu = canvas.gameObject.AddComponent<MainMenuUI>();
             Transform root = canvas.transform;
             var bg = Img(root, "Background", S("menu_background"), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero);
@@ -520,8 +532,7 @@ namespace Verso.EditorTools
             var sub = Label(root, "Subtitle", "Vire o mundo. Cruze para o outro lado.", Body, 36, Cream, TextAnchor.MiddleCenter, 3f);
             Place(sub.rectTransform, top, top, new Vector2(0f, -583f), new Vector2(900f, 50f));
 
-            var play = Btn(root, "PlayButton", "btn_primary", "Jogar", top, top, new Vector2(0f, -668f));
-            var quit = Btn(root, "QuitButton", "btn_secondary", "Sair", top, top, new Vector2(0f, -818f));
+            var play = Btn(root, "PlayButton", "btn_primary", "Jogar", top, top, new Vector2(0f, -650f));
 
             // Música do menu (Assets/Verso/Audio/Music)
             var music = AssetDatabase.LoadAssetAtPath<AudioClip>(MenuMusicPath);
@@ -537,14 +548,26 @@ namespace Verso.EditorTools
             // Créditos: botãozinho embaixo que abre a caixa
             var credBtnGo = new GameObject("CreditsButton", typeof(RectTransform), typeof(Image), typeof(Button));
             credBtnGo.transform.SetParent(root, false);
-            Place((RectTransform)credBtnGo.transform, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 28f), new Vector2(220f, 50f));
+            Place((RectTransform)credBtnGo.transform, Vector2.zero, Vector2.zero, new Vector2(40f, 32f), new Vector2(220f, 56f));
             var credImg = credBtnGo.GetComponent<Image>();
             credImg.color = new Color(1f, 1f, 1f, 0f);
             var credBtn = credBtnGo.GetComponent<Button>();
             credBtn.targetGraphic = credImg;
             credBtnGo.AddComponent<UIButtonFx>();
-            var credLabel = Label(credBtnGo.transform, "Label", "Créditos", Body, 28, new Color(Cream.r, Cream.g, Cream.b, 0.85f), TextAnchor.MiddleCenter, 2f);
+            var credLabel = Label(credBtnGo.transform, "Label", "Créditos", Body, 32, new Color(Cream.r, Cream.g, Cream.b, 0.9f), TextAnchor.MiddleLeft, 2f);
             Stretch(credLabel.rectTransform, Vector2.zero, Vector2.zero);
+
+            // Sair: canto oposto aos créditos (escondido na versão Web, onde não há como fechar)
+            var quitGo = new GameObject("QuitButton", typeof(RectTransform), typeof(Image), typeof(Button));
+            quitGo.transform.SetParent(root, false);
+            Place((RectTransform)quitGo.transform, new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(-40f, 32f), new Vector2(220f, 56f));
+            var quitImg = quitGo.GetComponent<Image>();
+            quitImg.color = new Color(1f, 1f, 1f, 0f);
+            var quit = quitGo.GetComponent<Button>();
+            quit.targetGraphic = quitImg;
+            quitGo.AddComponent<UIButtonFx>();
+            var quitLabel = Label(quitGo.transform, "Label", "Sair", Body, 32, new Color(Cream.r, Cream.g, Cream.b, 0.9f), TextAnchor.MiddleRight, 2f);
+            Stretch(quitLabel.rectTransform, Vector2.zero, Vector2.zero);
 
             // Créditos rolando (sem caixa): fundo escurecido, texto subindo e "Voltar" embaixo
             var credPanel = new GameObject("CreditsPanel", typeof(RectTransform), typeof(Image));
