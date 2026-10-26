@@ -73,6 +73,7 @@ namespace Verso.EditorTools
         {
             get
             {
+                if (display == null) display = AssetDatabase.LoadAssetAtPath<Font>(FontFolder + "IrishGrover-Regular.ttf");
                 if (display == null) display = AssetDatabase.LoadAssetAtPath<Font>(FontFolder + "LilitaOne-Regular.ttf");
                 return display != null ? display : VersoAssets.UIFont;
             }
@@ -217,7 +218,7 @@ namespace Verso.EditorTools
             btn.colors = cb;
             img.gameObject.AddComponent<UIButtonFx>();
 
-            var t = Label(img.transform, "Label", text, Display, 42, Cream, TextAnchor.MiddleCenter, 3f, 4f);
+            var t = Label(img.transform, "Label", text, Display, 60, Cream, TextAnchor.MiddleCenter, 3f, 4f); // botão só com texto (sem arte)
             Stretch(t.rectTransform, new Vector2(20f, 18f), new Vector2(-20f, -6f));
             return btn;
         }
@@ -518,21 +519,26 @@ namespace Verso.EditorTools
             canvas.GetComponent<CanvasScaler>().matchWidthOrHeight = 1f;
             var menu = canvas.gameObject.AddComponent<MainMenuUI>();
             Transform root = canvas.transform;
-            var bg = Img(root, "Background", S("menu_background"), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero);
-            var fitter = bg.gameObject.AddComponent<AspectRatioFitter>();
-            fitter.aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
-            fitter.aspectRatio = 1920f / 1080f;
+            // Fundo liso roxo (#4A3F6E)
+            var bgGo = new GameObject("Background", typeof(RectTransform), typeof(Image));
+            bgGo.transform.SetParent(root, false);
+            Stretch((RectTransform)bgGo.transform, Vector2.zero, Vector2.zero);
+            var bg = bgGo.GetComponent<Image>();
+            bg.color = Hex("4A3F6E");
+            bg.raycastTarget = false;
 
             // Layout da tela "01 · Menu principal" (Figma, página Telas): tudo centralizado
             var top = new Vector2(0.5f, 1f);
-            var logo = Img(root, "Logo", S("logo"), top, top, new Vector2(0f, -181f), new Vector2(1010f, 404f));
+            // Nome do jogo em Irish Grover com reflexo (logo_verso.png); cai no logo antigo se faltar
+            var logoSprite = AssetDatabase.LoadAssetAtPath<Sprite>(SpriteFolder + "logo_verso.png") ?? S("logo");
+            var logo = Img(root, "Logo", logoSprite, top, top, new Vector2(0f, -150f), new Vector2(900f, 448f));
             logo.preserveAspect = true;
             logo.gameObject.AddComponent<UIFloat>().Setup(8f, 1.3f, 0f);
 
             var sub = Label(root, "Subtitle", "Vire o mundo. Cruze para o outro lado.", Body, 36, Cream, TextAnchor.MiddleCenter, 3f);
-            Place(sub.rectTransform, top, top, new Vector2(0f, -583f), new Vector2(900f, 50f));
+            Place(sub.rectTransform, top, top, new Vector2(0f, -625f), new Vector2(900f, 50f));
 
-            var play = Btn(root, "PlayButton", "btn_primary", "Jogar", top, top, new Vector2(0f, -650f));
+            var play = Btn(root, "PlayButton", "btn_primary", "Jogar", top, top, new Vector2(0f, -700f));
 
             // Música do menu (Assets/Verso/Audio/Music)
             var music = AssetDatabase.LoadAssetAtPath<AudioClip>(MenuMusicPath);
